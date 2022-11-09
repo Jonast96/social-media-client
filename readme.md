@@ -27,5 +27,3 @@ The login form validates user inputs correctly based on API restrictions
 The create item form validates user inputs correctly based on API restrictions
 
 The logout button logs the user out when clicked
-
-test2
