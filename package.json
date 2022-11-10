@@ -11,7 +11,7 @@
     "test": "npm run test-unit",
     "test-unit": "jest",
     "prepare": "husky install",
-    "format": "prettier -w src/**/**.js"
+    "format": "prettier -w ./**/*.{js,scss,html,md}"
   },
   "keywords": [],
   "author": "",
