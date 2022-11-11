@@ -1,40 +1,63 @@
-describe("Authenticated user", () => {
+describe("Authentication", () => {
   beforeEach(() => {
-    cy.visit("./");
+    cy.visit("/");
     cy.clearLocalStorage();
   });
-  it("Can login", () => {
-    cy.wait(1000);
-    cy.get("#registerForm button")
-      .contains("Login")
-      .should("be.visible")
-      .click();
-    cy.wait(500);
+
+  it("will login", () => {
     const email = "jon@noroff.no";
     const password = "Password";
-    cy.get("#loginEmail").should("exist").type(`${email}`);
-    cy.get("#loginPassword").should("exist").type(`${password}{enter}`);
-    cy.wait(1000);
-    cy.then(() => expect(localStorage.getItem("token")).to.not.be.null);
-    cy.url().should("include", "profile");
-    cy.url().should("not.include", "login");
-  });
-});
-
-describe("Social Media Client", () => {
-  it("Validates invalid login inputs", () => {
-    cy.clearLocalStorage();
     cy.visit("/");
     cy.wait(1000);
-    cy.get("#registerForm button")
-      .contains("Login")
-      .should("be.visible")
-      .click();
-    cy.wait(500);
-    cy.get("#loginEmail").should("exist").type("bad@email.no");
-    cy.get("#loginPassword").should("exist").type("1234{enter}");
+    cy.get(".btn-close:visible").click();
+    cy.get("button[data-auth='login']:visible").click();
+    cy.wait(1500);
+    cy.get("input[type='email']:visible").should("exist").type(`${email}`);
+    cy.get("input[type='password']:visible")
+      .should("exist")
+      .type(`${password}`);
+    cy.get(".btn-success:visible").click();
+    cy.wait(3000);
+    cy.then(
+      () => expect(window.localStorage.getItem("profile")).to.not.be.null
+    );
+    cy.then(() => expect(window.localStorage.getItem("token")).to.not.be.null);
+    cy.url().should("include", "profile");
+  });
+
+  it("Validates email input", () => {
+    cy.visit("/");
     cy.wait(1000);
-    cy.then(() => expect(localStorage.getItem("token")).to.be.null);
+    cy.get(".btn-close:visible").click();
+    cy.get("button[data-auth='login']:visible").click();
+    cy.wait(1500);
+    cy.get("input[type='email']:visible")
+      .should("exist")
+      .type("/https://nf-api.onrender.com");
+    cy.get("input[type='password']:visible").should("exist").type("Password");
+    cy.get(".btn-success:visible").click();
+    cy.wait(3000);
+    cy.then(() => expect(window.localStorage.getItem("profile")).to.be.null);
+    cy.then(() => expect(window.localStorage.getItem("token")).to.be.null);
     cy.url().should("not.include", "profile");
+  });
+
+  it("Validates password", () => {
+    const email = "jon@noroff.no";
+    const password = "Password";
+    cy.visit("/");
+    cy.wait(1000);
+    cy.get(".btn-close:visible").click();
+    cy.get("button[data-auth='login']:visible").click();
+    cy.wait(1500);
+    cy.get("input[type='email']:visible").should("exist").type(`${email}`);
+    cy.get("input[type='password']:visible")
+      .should("exist")
+      .type(`${password}`);
+    cy.get(".btn-success:visible").click();
+    cy.wait(3000);
+    cy.then(() => expect(window.localStorage.getItem("profile")).to.exist);
+    cy.then(() => expect(window.localStorage.getItem("token")).to.exist);
+    cy.url().should("include", "profile");
   });
 });
