@@ -26,6 +26,7 @@ describe("Authentication", () => {
   });
 
   it("Validates email input", () => {
+    const password = "Password";
     cy.visit("/");
     cy.wait(1000);
     cy.get(".btn-close:visible").click();
@@ -34,7 +35,9 @@ describe("Authentication", () => {
     cy.get("input[type='email']:visible")
       .should("exist")
       .type("/https://nf-api.onrender.com");
-    cy.get("input[type='password']:visible").should("exist").type("Password");
+    cy.get("input[type='password']:visible")
+      .should("exist")
+      .type(`${password}`);
     cy.get(".btn-success:visible").click();
     cy.wait(3000);
     cy.then(() => expect(window.localStorage.getItem("profile")).to.be.null);
