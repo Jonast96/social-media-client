@@ -1,29 +1,25 @@
-#NPM COMMANDS
+# To do list
 
-npm run build // Will do something
+#The following workflows/hooks are required:
 
-npm run start // Will watch for changes in sass
+- [x] ~~_Project is configured to run Prettier on commit_~~ [2022-11-11]
+- [x] ~~_Project is configured to run ESLint on commit_~~ [2022-11-11]
+- [x] ~~_Project is configured to run Jest on commit_~~ [2022-11-11]
+- [ ] Project is configured to deploy to pages on merge to default
 
-npm run lint // Will run lint on all folders ending in .js
+#The following file changes are required:
 
-npm run lint-fix // Will try and fix problems found in lint
+- [ ] Project readme file is updated to include new configuration information and status badges
+- [ ] Project is configured for hosting (e.g. CDN links or a Bundler)
 
-npm run test // test
+#The following features must be automatically tested with unit tests:
 
-npm run test-unit // test
+- [x] ~~_The login function returns a valid token when provided with valid credentials_~~ [2022-11-11]
+- [x] ~~_The logout function clears the token from browser storage_~~ [2022-11-11]
+- [x] ~~_The create item function creates a new item on the API_~~ [2022-11-11]
 
-The following features must be automatically tested with unit tests:
+#The following features must be automatically tested with end-to-end tests:
 
-The login function returns a valid token when provided with valid credentials
-
-The logout function clears the token from browser storage
-
-The create item function creates a new item on the API
-
-The following features must be automatically tested with end-to-end tests:
-
-The login form validates user inputs correctly based on API restrictions
-
-The create item form validates user inputs correctly based on API restrictions
-
-The logout button logs the user out when clicked
+- [x] ~~_The login form validates user inputs correctly based on API restrictions_~~ [2022-11-11]
+- [x] ~~_The create item form validates user inputs correctly based on API restrictions_~~ [2022-11-11]
+- [x] ~~_The logout button logs the user out when clicked_~~ [2022-11-11]

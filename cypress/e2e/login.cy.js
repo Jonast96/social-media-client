@@ -1,27 +1,40 @@
-describe("Logout test", () => {
+describe("Authenticated user", () => {
   beforeEach(() => {
     cy.visit("./");
     cy.clearLocalStorage();
   });
-
-  it("can login", () => {
-    cy.get("#registerModalLabel")
-      .should("have.text", "Create Profile")
-      .should("be.visible");
+  it("Can login", () => {
     cy.wait(1000);
-    cy.get("#registerForm")
-      .find(".btn-outline-success")
+    cy.get("#registerForm button")
+      .contains("Login")
       .should("be.visible")
       .click();
-    cy.get("#loginModalLabel")
-      .should("have.text", "Login")
-      .should("be.visible");
+    cy.wait(500);
     const email = "jon@noroff.no";
-    cy.wait(1000);
     const password = "Password";
-    cy.get("#loginEmail").type(`${email}`);
-    cy.get("#loginPassword").type(`${password}`);
+    cy.get("#loginEmail").should("exist").type(`${email}`);
+    cy.get("#loginPassword").should("exist").type(`${password}{enter}`);
     cy.wait(1000);
-    cy.get("#loginForm .btn-success").should("be.visible").click();
+    cy.then(() => expect(localStorage.getItem("token")).to.not.be.null);
+    cy.url().should("include", "profile");
+    cy.url().should("not.include", "login");
+  });
+});
+
+describe("Social Media Client", () => {
+  it("Validates invalid login inputs", () => {
+    cy.clearLocalStorage();
+    cy.visit("/");
+    cy.wait(1000);
+    cy.get("#registerForm button")
+      .contains("Login")
+      .should("be.visible")
+      .click();
+    cy.wait(500);
+    cy.get("#loginEmail").should("exist").type("bad@email.no");
+    cy.get("#loginPassword").should("exist").type("1234{enter}");
+    cy.wait(1000);
+    cy.then(() => expect(localStorage.getItem("token")).to.be.null);
+    cy.url().should("not.include", "profile");
   });
 });
