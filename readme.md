@@ -1,3 +1,5 @@
+[![Automated E2E Testing](https://github.com/Jonast96/social-media-client/actions/workflows/e2e-test.yml/badge.svg)](https://github.com/Jonast96/social-media-client/actions/workflows/e2e-test.yml)
+
 # To do list
 
 #The following workflows/hooks are required:
@@ -5,7 +7,7 @@
 - [x] ~~_Project is configured to run Prettier on commit_~~ [2022-11-11]
 - [x] ~~_Project is configured to run ESLint on commit_~~ [2022-11-11]
 - [x] ~~_Project is configured to run Jest on commit_~~ [2022-11-11]
-- [ ] Project is configured to deploy to pages on merge to default
+- [x] ~~_Project is configured to deploy to pages on merge to default_~~ [2022-11-11]
 
 #The following file changes are required:
 
