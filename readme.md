@@ -4,6 +4,33 @@
 
 [![Deploy static content to Pages](https://github.com/Jonast96/social-media-client/actions/workflows/pages.yml/badge.svg)](https://github.com/Jonast96/social-media-client/actions/workflows/pages.yml)
 
+# How to install and run the project
+
+Clone the repo and install npm
+
+  -npm i
+  
+Run sass build script
+
+  -npm run build
+
+# Scripts avaliable in this project
+    "build": "sass src/scss:dist/css"
+    "start": "sass --watch src/scss:dist/css & live-server"
+    "lint": "eslint src/**/*.js"
+    "lint-fix": "eslint src/**/*.js --cache --fix"
+    "prepare": "husky install"
+    "format": "prettier -w ./**/*.{js,scss,html,md}"
+    "test": "npm run test-unit && npm run test-e2e-cli"
+    "test-unit": "jest"
+    "test-e2e": "cypress open"
+    "test-e2e-cli": "cypress run"
+    "dev": "live-server"
+
+
+
+
+
 # To do list
 
 #The following workflows/hooks are required:
