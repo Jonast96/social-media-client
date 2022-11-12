@@ -16,7 +16,7 @@ describe("Authenticated user", () => {
   });
 
   it("Can create a new post", () => {
-    cy.get("#footerActions a").contains("New Post").click();
+    cy.get("#footerActions a").contains("New Post").click({ force: true });
     cy.get("#postForm")
       .should("exist")
       .within(() => {
@@ -35,7 +35,9 @@ describe("Authenticated user", () => {
         cy.get("#postBody")
           .should("exist")
           .type("This is my test body", { delay: 100 });
-        cy.get("button[data-action='submit']").should("exist").click();
+        cy.get("button[data-action='submit']")
+          .should("exist")
+          .click({ force: true });
       });
   });
 });
